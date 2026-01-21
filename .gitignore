@@ -1,2 +1,6 @@
 node_modules
 .env 
+
+
+# first we intialize git init than just push intial commit and use the git command given in new repo to connect
+# old repo 
