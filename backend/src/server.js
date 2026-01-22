@@ -4,6 +4,9 @@ import dotenv from "dotenv";
 //path is a Node.js built-in module.path helps us work with file paths safely
 import path from "path";
 import { connectDB } from "./lib/db.js";
+import cors from "cors";
+import {serve} from "inngest/express";
+import { inngest } from "./lib/inngest.js";
 
 dotenv.config();
 
@@ -12,7 +15,17 @@ const __dirname=path.resolve();
 
 const app=express();
 
-// console.log(process.env.DB_URL)
+//middleware
+
+//express.json() is a built-in middleware in Express.js that reads JSON data from the request body and converts it into a JavaScript object available as req.body.
+app.use(express.json());
+
+app.use(cors({origin:process.env.CLIENT_URL,credentials:true}));
+
+//This line creates an API route in our backend.That route is used by Inngest to run background tasks
+//serve coonect inngest with our server
+// app.use("/api/inngest",serve({client : inngest,functions}))
+
 
 //This code allows your Node.js backend to serve your React app in production, enabling single-server deployment with proper client-side routing.
 if(process.env.NODE_ENV=="production"){ //both frontend and backend should run on same port
