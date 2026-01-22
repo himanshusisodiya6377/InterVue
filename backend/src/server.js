@@ -6,7 +6,7 @@ import path from "path";
 import { connectDB } from "./lib/db.js";
 import cors from "cors";
 import {serve} from "inngest/express";
-import { inngest } from "./lib/inngest.js";
+import { inngest,functions } from "./lib/inngest.js";
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ app.use(cors({origin:process.env.CLIENT_URL,credentials:true}));
 
 //This line creates an API route in our backend.That route is used by Inngest to run background tasks
 //serve coonect inngest with our server
-// app.use("/api/inngest",serve({client : inngest,functions}))
+app.use("/api/inngest",serve({client : inngest,functions}))
 
 
 //This code allows your Node.js backend to serve your React app in production, enabling single-server deployment with proper client-side routing.
