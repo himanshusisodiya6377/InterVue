@@ -2,6 +2,8 @@
 import { connectDB } from "./db.js";
 import {Inngest} from "inngest";
 import User from "../models/User.js";
+//instance of connecting to stream used here so from here we can call the functions and save or delete user in stream
+import { deleteStreamUser, upsertStreamUser } from "./stream.js";
 
 export const inngest=new Inngest({id : "InterVue"}); //we are creating an Inngest object (instance) so we can use inngest.
 
@@ -22,6 +24,13 @@ const syncUser= inngest.createFunction(
     };
 
     await User.create(newUser);
+         
+    await upsertStreamUser({
+      name:newUser.name,
+      image:newUser.profileImage,
+      id:newUser.clerkId.tostring()
+    });
+
     }
 )
 
@@ -33,6 +42,8 @@ const deleteUserFromDB = inngest.createFunction(
 
     const { id } = event.data;
     await User.deleteOne({ clerkId: id });
+
+    await deleteStreamUser(id.tostring());
 
   }
 );
