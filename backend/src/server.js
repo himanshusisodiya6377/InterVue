@@ -7,6 +7,8 @@ import { connectDB } from "./lib/db.js";
 import cors from "cors";
 import {serve} from "inngest/express";
 import { inngest,functions } from "./lib/inngest.js";
+import { clerkMiddleware } from '@clerk/express';
+import chatRoutes from "./routes/chatRoutes.js";
 
 dotenv.config();
 
@@ -14,6 +16,7 @@ dotenv.config();
 const __dirname=path.resolve();
 
 const app=express();
+app.use(clerkMiddleware()) // this adds auth field to request object: req.auth() which we will later use to authenticate it has many fields
 
 //middleware
 
@@ -25,6 +28,7 @@ app.use(cors({origin:process.env.CLIENT_URL,credentials:true}));
 //This line creates an API route in our backend.That route is used by Inngest to run background tasks
 //serve coonect inngest with our server
 app.use("/api/inngest",serve({client : inngest,functions}))
+app.use("/api/chat",chatRoutes);
 
 
 //This code allows your Node.js backend to serve your React app in production, enabling single-server deployment with proper client-side routing.
