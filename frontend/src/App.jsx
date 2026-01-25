@@ -1,26 +1,24 @@
-import { SignInButton, SignOutButton ,SignedOut, SignedIn, UserButton } from '@clerk/clerk-react'
-import './App.css'
+import {
+  SignInButton,
+  SignOutButton,
+  SignedOut,
+  SignedIn,
+  UserButton,
+} from "@clerk/clerk-react";
 
-//we have user in clerk but not in database as both are different dont know about each other thats why we use ingest that
-//runs a function and send user to mongodb and videostream
+import { Routes, Route } from "react-router";
+
+import HomePage from "./pages/HomePage";
+
 function App() {
-
   return (
-    <>
-     <h1>welcome to the app</h1>
-      <SignedOut>
-      <SignInButton mode="modal">
-          <button>Login</button>
-      </SignInButton>
-      </SignedOut>
-
-     <SignedIn>
-      <SignOutButton/>
-     </SignedIn>
-
-     <UserButton/>
-    </>
-  )
+      <>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+    </Routes>
+     <Toaster toastOptions={{duration:3000}} />
+      </>
+  );
 }
 
-export default App
+export default App;

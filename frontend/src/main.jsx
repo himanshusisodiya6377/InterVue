@@ -3,9 +3,18 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
+import { BrowserRouter } from 'react-router'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 
 // Import your Publishable Key
+const queryClient = new QueryClient()
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 if (!PUBLISHABLE_KEY) {
@@ -15,8 +24,12 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* wrapping app in clearkprovider so its features accessible to all */}
+    <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
         <App />
-      </ClerkProvider>
+    </ClerkProvider>
+    </QueryClientProvider>
+    </BrowserRouter>
   </StrictMode>,
 )
