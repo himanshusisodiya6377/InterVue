@@ -9,6 +9,7 @@ import {serve} from "inngest/express";
 import { inngest,functions } from "./lib/inngest.js";
 import { clerkMiddleware } from '@clerk/express';
 import chatRoutes from "./routes/chatRoutes.js";
+import sessionRoutes from "./routes/sessionRoutes.js";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use(cors({origin:process.env.CLIENT_URL,credentials:true}));
 //serve coonect inngest with our server
 app.use("/api/inngest",serve({client : inngest,functions}))
 app.use("/api/chat",chatRoutes);
+app.use("/api/session",sessionRoutes);
 
 
 //This code allows your Node.js backend to serve your React app in production, enabling single-server deployment with proper client-side routing.

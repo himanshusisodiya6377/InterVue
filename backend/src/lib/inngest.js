@@ -31,6 +31,8 @@ const syncUser= inngest.createFunction(
       id:newUser.clerkId.tostring()
     });
 
+    //challenge : sending mail logic likho
+
     }
 )
 

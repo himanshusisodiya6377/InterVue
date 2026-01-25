@@ -2,6 +2,7 @@
 //Used to talk to Stream servers
 import {StreamChat} from "stream-chat";
 import dotenv from "dotenv";
+import {StreamClient} from "@stream-io/node-sdk";
 
 dotenv.config();
 
@@ -12,7 +13,8 @@ if(!apikey || !apisecret){
     console.error("apikey or apisecret is missing!")
 }
 
-export const chatClient=StreamChat.getInstance(apikey,apisecret); //help to connect stream with our backend or Login to Stream as the backend
+export const streamclient=new StreamClient(apikey,apisecret); //help to use video feature and connect stream with our backend or Login to Stream as the backend
+export const chatClient=StreamChat.getInstance(apikey,apisecret); //help to use chat feature and connect stream with our backend or Login to Stream as the backend
 
 export const upsertStreamUser = async(UserData)=>{ 
    try{
