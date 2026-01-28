@@ -1,23 +1,20 @@
-import {
-  SignInButton,
-  SignOutButton,
-  SignedOut,
-  SignedIn,
-  UserButton,
-} from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
+import { Navigate, Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage.jsx";
 
-import { Routes, Route } from "react-router";
-
-import HomePage from "./pages/HomePage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
+
   return (
-      <>
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
-     <Toaster toastOptions={{duration:3000}} />
-      </>
+    <>
+      <Routes>
+        <Route path="/" element={ <HomePage />} />
+
+      </Routes>
+
+      <Toaster toastOptions={{ duration: 3000 }} />
+    </>
   );
 }
 
