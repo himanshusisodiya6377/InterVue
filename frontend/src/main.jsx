@@ -24,12 +24,12 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* wrapping app in clearkprovider so its features accessible to all */}
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
     <BrowserRouter>
     <QueryClientProvider client={queryClient}>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
         <App />
-    </ClerkProvider>
     </QueryClientProvider>
     </BrowserRouter>
+    </ClerkProvider>
   </StrictMode>,
 )
