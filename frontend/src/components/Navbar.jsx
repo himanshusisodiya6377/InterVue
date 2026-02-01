@@ -28,7 +28,7 @@ function Navbar() {
 
           <div className="flex flex-col leading-tight">
             <span className="font-black text-lg sm:text-xl bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-mono tracking-wider">
-              Talent IQ
+              InterVue
             </span>
             <span className="text-[10px] sm:text-xs text-base-content/60 font-medium -mt-1">
               Code Together
