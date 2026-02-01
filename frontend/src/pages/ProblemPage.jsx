@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { PROBLEMS } from "../data/problems";
 import Navbar from "../components/Navbar";
 
@@ -111,7 +111,7 @@ function ProblemPage() {
       <Navbar />
 
       <div className="flex-1">
-        <PanelGroup direction="horizontal">
+        <PanelGroup direction="horizontal"  className="hidden md:flex h-full">
           {/* left panel- problem desc */}
           <Panel defaultSize={40} minSize={30}>
             <ProblemDescription
