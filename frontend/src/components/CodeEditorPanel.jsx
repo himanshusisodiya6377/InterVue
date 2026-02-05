@@ -2,14 +2,7 @@ import Editor from "@monaco-editor/react";
 import { Loader2Icon, PlayIcon } from "lucide-react";
 import { LANGUAGE_CONFIG } from "../data/problems";
 
-function CodeEditorPanel({
-  selectedLanguage,
-  code,
-  isRunning,
-  onLanguageChange,
-  onCodeChange,
-  onRunCode,
-}) {
+function CodeEditorPanel({selectedLanguage,code,isRunning,onLanguageChange,onCodeChange,onRunCode}) {
   return (
     <div className="h-full bg-base-300 flex flex-col">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-base-100 border-t border-base-300">

@@ -18,7 +18,7 @@ const syncUser= inngest.createFunction(
 
         const newUser = {
         clerkId: id,
-        email: email_addresses[0]?.email_address,
+        email: email_addresses[0]?.email_address || "",
         name: `${first_name || ""} ${last_name || ""}`,
         profileImage: image_url,
     };
@@ -28,7 +28,7 @@ const syncUser= inngest.createFunction(
     await upsertStreamUser({  //creating or updating user in stream
       name:newUser.name,
       image:newUser.profileImage,
-      id:newUser.clerkId.tostring()
+      id:newUser.clerkId.toString()
     });
 
     //challenge : sending mail logic likho
@@ -45,7 +45,7 @@ const deleteUserFromDB = inngest.createFunction(
     const { id } = event.data;
     await User.deleteOne({ clerkId: id });
 
-    await deleteStreamUser(id.tostring()); //deleteing user in stream
+    await deleteStreamUser(id.toString()); //deleteing user in stream
 
   }
 );
